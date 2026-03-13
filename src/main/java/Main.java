@@ -17,6 +17,7 @@ void main() throws Exception {
             final String name = args[0];
             final Command cmd = commands.get(name);
             if (cmd != null) {
+                cmd.initArgs(args);
                 cmd.execute(args);
             } else
                 System.out.println(name + ": command not found");
