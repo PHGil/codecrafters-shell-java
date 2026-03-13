@@ -6,7 +6,7 @@ public class Type implements Command {
             System.out.println("type: missing operand");
             return;
         }
-        String name = args[1];
+        String name = args[1].trim();
         if (!CommandsEnum.contains(name)) {
             System.out.println(name + " not found");
         } else {
