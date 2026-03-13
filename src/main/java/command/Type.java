@@ -2,7 +2,7 @@ package command;
 
 public class Type implements Command {
     public void execute(String[] args) {
-        if (args.length < 1) {
+        if (args.length < 2) {
             System.out.println("type: missing operand");
             return;
         }

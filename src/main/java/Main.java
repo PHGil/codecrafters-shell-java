@@ -13,7 +13,8 @@ void main() throws Exception {
             commands.put("type", new Type());
         }
 
-        public static void run(String name, String... args) {
+        public static void run(String... args) {
+            final String name = args[0];
             final Command cmd = commands.get(name);
             if (cmd != null) {
                 cmd.execute(args);
