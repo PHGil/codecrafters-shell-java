@@ -9,7 +9,7 @@ void main() throws Exception {
         } else if (input.startsWith(echoInput)) {
             System.out.println(input.substring(echoInput.length()));
         } else {
-            System.out.println(input + ": input not found");
+            System.out.println(input + ": command not found");
         }
 
     }
