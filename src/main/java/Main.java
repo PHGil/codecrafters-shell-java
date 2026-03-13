@@ -2,10 +2,13 @@ void main() throws Exception {
     Scanner scanner = new Scanner(System.in);
     while (true) {
         System.out.print("$ ");
-        String command = scanner.nextLine();
-        if (command.equals("exit")) {
+        String input = scanner.nextLine();
+        if (input.equals("exit")) {
             break;
         }
-        System.out.println(command + ": command not found");
+        if (input.startsWith("echo ")) {
+            System.out.println(input);
+        }
+        System.out.println(input + ": input not found");
     }
 }
