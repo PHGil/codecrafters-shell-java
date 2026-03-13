@@ -1,0 +1,31 @@
+import command.Command;
+import command.Echo;
+import command.Exit;
+import command.Type;
+
+void main() throws Exception {
+    class Commands {
+        private static final Map<String, Command> commands = new HashMap<>();
+
+        static {
+            commands.put("exit", new Exit());
+            commands.put("echo", new Echo());
+            commands.put("type", new Type());
+        }
+
+        public static void run(String name, String... args) {
+            final Command cmd = commands.get(name);
+            if (cmd != null) {
+                cmd.execute(args);
+            } else
+                System.out.println(name + ": command not found");
+        }
+    }
+
+    Scanner scanner = new Scanner(System.in);
+    while (true) {
+        System.out.print("$ ");
+        String input = scanner.nextLine();
+        Commands.run(input.split(" ")[0], input.split(" "));
+    }
+}
