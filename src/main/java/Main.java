@@ -25,7 +25,8 @@ void main() throws Exception {
     Scanner scanner = new Scanner(System.in);
     while (true) {
         System.out.print("$ ");
-        String input = scanner.nextLine();
-        Commands.run(input.split(" ")[0], input.split(" "));
+        final String input = scanner.nextLine();
+        final String command = input.split(" ")[0];
+        Commands.run(command, input.substring(command.length()));
     }
 }
