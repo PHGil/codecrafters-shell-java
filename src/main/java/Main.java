@@ -6,10 +6,11 @@ void main() throws Exception {
         String input = scanner.nextLine();
         if (input.equals("exit")) {
             break;
-        }
-        if (input.startsWith(echoInput)) {
+        } else if (input.startsWith(echoInput)) {
             System.out.println(input.substring(echoInput.length()));
+        } else {
+            System.out.println(input + ": input not found");
         }
-        System.out.println(input + ": input not found");
+
     }
 }
