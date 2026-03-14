@@ -21,7 +21,7 @@ void main() {
             final Command cmd = COMMAND_MAP.get(name);
             if (cmd != null) {
                 cmd.initArgs(args);
-                cmd.execute(args);
+                return cmd.execute(args);
             } else
                 return name + ": command not found";
         }
