@@ -3,24 +3,27 @@ import command.Echo;
 import command.Exit;
 import command.Type;
 
-void main() throws Exception {
+void main() {
     class Commands {
-        private static final Map<String, Command> commands = new HashMap<>();
+        private static final Map<String, Command> COMMAND_MAP = new HashMap<>();
 
         static {
-            commands.put("exit", new Exit());
-            commands.put("echo", new Echo());
-            commands.put("type", new Type());
+            COMMAND_MAP.put("exit", new Exit());
+            COMMAND_MAP.put("echo", new Echo());
+            COMMAND_MAP.put("type", new Type());
         }
 
-        public static void run(String... args) {
+        Commands() {
+        }
+
+        public static String run(String... args) {
             final String name = args[0];
-            final Command cmd = commands.get(name);
+            final Command cmd = COMMAND_MAP.get(name);
             if (cmd != null) {
                 cmd.initArgs(args);
                 cmd.execute(args);
             } else
-                System.out.println(name + ": command not found");
+                return name + ": command not found";
         }
     }
 
@@ -29,6 +32,6 @@ void main() throws Exception {
         System.out.print("$ ");
         final String input = scanner.nextLine();
         final String command = input.split(" ")[0];
-        Commands.run(command, input.substring(command.length()));
+        System.out.println(Commands.run(command, input.substring(command.length())));
     }
 }
