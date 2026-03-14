@@ -21,7 +21,7 @@ void main() {
                 try {
                     final Process process = new ProcessBuilder(commandName).start();
                     process.waitFor();
-                    return null;
+                    return process.toString();
                 } catch (IOException | InterruptedException e) {
                     return "Error executing command: " + e.getMessage();
                 }
@@ -37,9 +37,6 @@ void main() {
         final String[] parts = input.split(" +");
         final String command = parts[0];
         final String[] commandArgs = Arrays.copyOfRange(parts, 1, parts.length);
-        final String run = Commands.run(command, commandArgs);
-        if (run != null) {
-            System.out.println(run);
-        }
+        System.out.println(Commands.run(command, commandArgs));
     }
 }
