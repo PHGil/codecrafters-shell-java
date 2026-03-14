@@ -13,15 +13,18 @@ void main() {
         Commands() {
         }
 
-        public static String run(String... args) {
-            final String commandName = args[0];
-            final String[] commandArgs = Arrays.copyOfRange(args, 1, args.length);
+        public static String run(final String commandName, final String[] args) {
             final Command cmd = COMMAND_MAP.get(commandName);
             if (cmd != null) {
-                cmd.initArgs(args);
                 return cmd.execute(args);
             } else if (Utils.checkIfCommandIsExecutable(commandName) != null) {
-                return "exec" + Arrays.toString(commandArgs);
+                try {
+                    final Process process = new ProcessBuilder(commandName).start();
+                    process.waitFor();
+                    return "";
+                } catch (IOException | InterruptedException e) {
+                    return "Error executing command: " + e.getMessage();
+                }
             } else
                 return commandName + ": command not found";
         }
@@ -31,7 +34,9 @@ void main() {
     while (true) {
         System.out.print("$ ");
         final String input = scanner.nextLine();
-        final String command = input.split(" +")[0];
-        System.out.println(Commands.run(command, input.substring(command.length())));
+        final String[] parts = input.split(" +");
+        final String command = parts[0];
+        final String[] commandArgs = Arrays.copyOfRange(parts, 1, parts.length);
+        System.out.println(Commands.run(command, commandArgs));
     }
 }
