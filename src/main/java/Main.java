@@ -21,7 +21,7 @@ void main() {
                 cmd.initArgs(args);
                 return cmd.execute(args);
             } else if (Utils.checkIfCommandIsExecutable(commandName) != null) {
-                return "exec" + commandArgs.toString();
+                return "exec" + Arrays.toString(commandArgs);
             } else
                 return commandName + ": command not found";
         }
