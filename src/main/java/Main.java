@@ -1,7 +1,4 @@
-import command.Command;
-import command.Echo;
-import command.Exit;
-import command.Type;
+import command.*;
 
 void main() {
     class Commands {
@@ -17,13 +14,17 @@ void main() {
         }
 
         public static String run(String... args) {
-            final String name = args[0];
-            final Command cmd = COMMAND_MAP.get(name);
+            final String commandName = args[0];
+            final String[] commandArgs = Arrays.copyOfRange(args, 1, args.length);
+            final Command cmd = COMMAND_MAP.get(commandName);
             if (cmd != null) {
                 cmd.initArgs(args);
                 return cmd.execute(args);
-            } else
-                return name + ": command not found";
+            } else if (Utils.checkIfCommandIsExecutable(commandName) != null) {
+                System.out.println("exec" + commandArgs);
+            } else {
+                return commandName + ": command not found";
+            }
         }
     }
 
