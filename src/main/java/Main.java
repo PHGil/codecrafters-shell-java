@@ -31,7 +31,7 @@ void main() {
     while (true) {
         System.out.print("$ ");
         final String input = scanner.nextLine();
-        final String command = input.split(" ")[0];
+        final String command = input.split(" +")[0];
         System.out.println(Commands.run(command, input.substring(command.length())));
     }
 }
