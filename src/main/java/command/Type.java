@@ -1,8 +1,7 @@
 package command;
 
 public class Type implements Command {
-
-
+    @Override
     public String execute(final String[] args) {
         if (args.length < 1) {
             return "type: missing operand";

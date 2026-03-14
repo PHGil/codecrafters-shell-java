@@ -3,7 +3,8 @@ package command;
 public enum CommandsEnum {
     EXIT("exit"),
     ECHO("echo"),
-    TYPE("type");
+    TYPE("type"),
+    PWD("pwd");
 
     CommandsEnum(String command) {
     }

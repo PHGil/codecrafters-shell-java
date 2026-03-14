@@ -8,6 +8,7 @@ void main() {
             COMMAND_MAP.put("exit", new Exit());
             COMMAND_MAP.put("echo", new Echo());
             COMMAND_MAP.put("type", new Type());
+            COMMAND_MAP.put("pwd", new PWD());
         }
 
         Commands() {

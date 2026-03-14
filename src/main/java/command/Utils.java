@@ -2,10 +2,9 @@ package command;
 
 import java.io.File;
 
-import static command.Command.DELIMITER;
-import static command.Command.PATH;
-
 public final class Utils {
+    private static final String PATH = System.getenv("PATH");
+    private static final String DELIMITER = File.pathSeparator;
 
     Utils() {
     }
