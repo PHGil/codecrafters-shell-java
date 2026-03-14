@@ -24,7 +24,7 @@ void main() {
                 try {
                     final Process process = Runtime.getRuntime().exec(parts);
                     process.waitFor();
-                    return new String(process.getInputStream().readAllBytes());
+                    return new String(process.getInputStream().readAllBytes()).stripTrailing();
                 } catch (IOException | InterruptedException e) {
                     return "Error executing command: " + e.getMessage();
                 }
