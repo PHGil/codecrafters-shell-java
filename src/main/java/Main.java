@@ -21,7 +21,7 @@ void main() {
                 try {
                     final Process process = new ProcessBuilder(commandName).start();
                     process.waitFor();
-                    return process.toString();
+                    return process.getInputStream().toString();
                 } catch (IOException | InterruptedException e) {
                     return "Error executing command: " + e.getMessage();
                 }
