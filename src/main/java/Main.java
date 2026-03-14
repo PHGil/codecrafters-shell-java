@@ -37,6 +37,9 @@ void main() {
         final String[] parts = input.split(" +");
         final String command = parts[0];
         final String[] commandArgs = Arrays.copyOfRange(parts, 1, parts.length);
-        System.out.println(Commands.run(command, commandArgs));
+        final String run = Commands.run(command, commandArgs);
+        if (run != null) {
+            System.out.println(run);
+        }
     }
 }
