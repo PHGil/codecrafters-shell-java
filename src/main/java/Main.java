@@ -40,7 +40,6 @@ void main() {
     while (true) {
         System.out.print("$ ");
         String result = Commands.run(scanner.nextLine());
-        System.out.println("Result: " + result);
         if (!result.isEmpty()) {
             System.out.println(result);
         }
