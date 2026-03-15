@@ -1,5 +1,7 @@
 import command.*;
 
+import static command.Utils.PARAMETER_EXTENSION;
+
 void main() {
     class Commands {
         private static final Map<String, Command> COMMAND_MAP = new HashMap<>();
@@ -37,7 +39,7 @@ void main() {
 
     Scanner scanner = new Scanner(System.in);
     while (true) {
-        System.out.print("$ ");
+        System.out.print(PARAMETER_EXTENSION);
         System.out.println(Commands.run(scanner.nextLine()));
     }
 }

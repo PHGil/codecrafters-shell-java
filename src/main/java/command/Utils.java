@@ -3,6 +3,8 @@ package command;
 import java.io.File;
 
 public final class Utils {
+    public static final String PARAMETER_EXTENSION = "$ ";
+    
     private static final String PATH = System.getenv("PATH");
     private static final String DELIMITER = File.pathSeparator;
 

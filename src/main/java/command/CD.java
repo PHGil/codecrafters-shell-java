@@ -1,5 +1,7 @@
 package command;
 
+import static command.Utils.PARAMETER_EXTENSION;
+
 public class CD implements Command {
     @Override
     public String execute(String[] args) {
@@ -13,6 +15,6 @@ public class CD implements Command {
             return "cd: " + targetDir + ": No such file or directory";
         }
         System.setProperty("user.dir", targetDir);
-        return "";
+        return PARAMETER_EXTENSION;
     }
 }
