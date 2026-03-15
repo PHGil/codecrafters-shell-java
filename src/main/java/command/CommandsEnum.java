@@ -4,7 +4,8 @@ public enum CommandsEnum {
     EXIT("exit"),
     ECHO("echo"),
     TYPE("type"),
-    PWD("pwd");
+    PWD("pwd"),
+    CD("cd");
 
     CommandsEnum(String command) {
     }

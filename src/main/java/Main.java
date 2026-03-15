@@ -9,6 +9,7 @@ void main() {
             COMMAND_MAP.put("echo", new Echo());
             COMMAND_MAP.put("type", new Type());
             COMMAND_MAP.put("pwd", new PWD());
+            COMMAND_MAP.put("cd", new CD());
         }
 
         Commands() {
