@@ -40,6 +40,9 @@ void main() {
     Scanner scanner = new Scanner(System.in);
     while (true) {
         System.out.print(PARAMETER_EXTENSION);
-        System.out.println(Commands.run(scanner.nextLine()));
+        String result = Commands.run(scanner.nextLine());
+        if (!result.isEmpty()) {
+            System.out.println(result);
+        }
     }
 }
