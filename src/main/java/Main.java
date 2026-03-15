@@ -1,6 +1,5 @@
 import command.*;
 
-import static command.Utils.PARAMETER_EXTENSION;
 
 void main() {
     class Commands {
@@ -39,7 +38,7 @@ void main() {
 
     Scanner scanner = new Scanner(System.in);
     while (true) {
-        System.out.print(PARAMETER_EXTENSION);
+        System.out.print("$ ");
         String result = Commands.run(scanner.nextLine());
         if (!result.isEmpty()) {
             System.out.println(result);
