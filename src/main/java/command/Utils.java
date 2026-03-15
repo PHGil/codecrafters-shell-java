@@ -20,11 +20,8 @@ public final class Utils {
         return null;
     }
 
-    public static String extractPathFromCommand(final String command) {
-        final String[] parts = command.split(" +");
-        if (parts.length > 1) {
-            return parts[1];
-        }
-        return null;
+    public static boolean isDirectoryPresent(final String path) {
+        final File file = new File(path);
+        return file.exists() && file.isDirectory();
     }
 }

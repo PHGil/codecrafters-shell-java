@@ -3,19 +3,16 @@ package command;
 public class CD implements Command {
     @Override
     public String execute(String[] args) {
-        if (args.length == 0) {
-            System.setProperty("user.dir", System.getProperty("user.home"));
-            return "";
-        } else if (args.length == 1) {
-            String newPath = Utils.extractPathFromCommand(args[0]);
-            if (newPath != null) {
-                System.setProperty("user.dir", newPath);
-                return "";
-            } else {
-                return "cd: " + args[0] + ": No such file or directory";
-            }
-        } else {
+        if (args.length > 1) {
             return "cd: too many arguments";
         }
+        String targetDir = args.length == 0
+                ? System.getProperty("user.home")
+                : args[0];
+        if (args.length == 1 && !Utils.isDirectoryPresent(targetDir)) {
+            return "cd: " + targetDir + ": No such file or directory";
+        }
+        System.setProperty("user.dir", targetDir);
+        return "";
     }
 }
