@@ -20,7 +20,6 @@ void main() {
             final String[] parts = input.split(" +");
             final String command = parts[0];
             final String[] commandArgs = Arrays.copyOfRange(parts, 1, parts.length);
-            System.out.println("Running command: " + command + " with arguments: " + Arrays.toString(commandArgs));
             final Command cmd = COMMAND_MAP.get(command);
             if (cmd != null) {
                 return cmd.execute(commandArgs);
