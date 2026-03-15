@@ -9,11 +9,9 @@ public class CD implements Command {
         String targetDir = args.length == 0
                 ? System.getProperty("user.home")
                 : args[0];
-        System.out.println("Changing directory to: " + targetDir);
         if (!Utils.isDirectoryPresent(targetDir)) {
             return "cd: " + targetDir + ": No such file or directory";
         }
-        System.out.println("Directory changed to: " + targetDir);
         System.setProperty("user.dir", targetDir);
         return "";
     }
