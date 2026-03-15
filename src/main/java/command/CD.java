@@ -10,19 +10,31 @@ public class CD implements Command {
         if (args.length > 1) {
             return "cd: too many arguments";
         }
-        if (args.length == 0 || this.isHomeDirectory(args[0])) {
+        if (args.length == 0) {
             System.setProperty(USER_DIR, HOME_DIR);
+            return "";  // Must return here to avoid ArrayIndexOutOfBoundsException
         }
+
         String targetDir = args[0];
+
+        // Handle ~ (home directory)
+        if (this.isHomeDirectory(targetDir)) {
+            targetDir = targetDir.replaceFirst("~", HOME_DIR);
+        }
+        // Handle .. (parent directory)
+        else if (this.isParentDirectory(targetDir)) {
+            targetDir = this.handleParentDirectory(targetDir);
+        }
+        // Handle relative paths (don't start with /)
+        else if (this.isRelativePath(targetDir)) {
+            targetDir = System.getProperty(USER_DIR) + "/" + targetDir;
+        }
+        // Absolute paths (start with /) - no modification needed
+
         if (!Utils.isDirectoryPresent(targetDir)) {
             return "cd: " + targetDir + ": No such file or directory";
         }
-        if (this.isCurrentDirectory(targetDir)) {
-            targetDir = System.getProperty(USER_DIR) + "/" + targetDir;
-        }
-        if (this.isParentDirectory(targetDir)) {
-            targetDir = this.handleParentDirectory(targetDir);
-        }
+
         System.setProperty(USER_DIR, targetDir);
         return "";
     }
@@ -33,8 +45,8 @@ public class CD implements Command {
         return parentDir + path.substring(2);
     }
 
-    private boolean isCurrentDirectory(final String path) {
-        return path.startsWith("./") || !path.matches("^[^/]*");
+    private boolean isRelativePath(final String path) {
+        return !path.startsWith("/");  // Simple and correct
     }
 
     private boolean isHomeDirectory(final String path) {
@@ -42,6 +54,6 @@ public class CD implements Command {
     }
 
     private boolean isParentDirectory(final String path) {
-        return path.startsWith("../");
+        return path.startsWith("..");
     }
 }
