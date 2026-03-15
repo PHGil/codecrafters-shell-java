@@ -13,6 +13,8 @@ public class CD implements Command {
             return "cd: " + targetDir + ": No such file or directory";
         }
         System.setProperty("user.dir", targetDir);
+        System.out.println(System.getProperty("user.dir"));
+        System.out.println(targetDir);
         return "";
     }
 }
