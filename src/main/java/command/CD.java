@@ -4,7 +4,6 @@ import java.nio.file.Paths;
 
 public class CD implements Command {
     private static final String USER_DIR = "user.dir";
-    private static final String HOME = "~";
     private static final String HOME_DIR = System.getProperty("user.home");
 
     @Override
@@ -12,7 +11,7 @@ public class CD implements Command {
         if (args.length > 1) {
             return "cd: too many arguments";
         }
-        if (args.length == 0) {
+        if (args.length == 0 || args[0].equals("~")) {
             System.setProperty(USER_DIR, HOME_DIR);
             return "";
         }
@@ -36,6 +35,6 @@ public class CD implements Command {
     }
 
     private boolean isHomeDirectory(final String path) {
-        return path.startsWith(HOME);
+        return path.startsWith("~");
     }
 }
