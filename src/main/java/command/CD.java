@@ -12,7 +12,7 @@ public class CD implements Command {
         if (args.length == 1 && !Utils.isDirectoryPresent(targetDir)) {
             return "cd: " + targetDir + ": No such file or directory";
         }
-        System.getProperty("user.dir");
+        System.setProperty("user.dir", targetDir);
         return "";
     }
 }
