@@ -19,4 +19,12 @@ public final class Utils {
         }
         return null;
     }
+
+    public static String extractPathFromCommand(final String command) {
+        final String[] parts = command.split(" +");
+        if (parts.length > 1) {
+            return parts[1];
+        }
+        return null;
+    }
 }
