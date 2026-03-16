@@ -12,6 +12,7 @@ public class CD implements Command {
             return "cd: too many arguments";
         }
         if (args.length == 0 || args[0].equals("~")) {
+            System.out.println("Changing to home directory: " + HOME_DIR);
             System.setProperty(USER_DIR, HOME_DIR);
             return "";
         }
