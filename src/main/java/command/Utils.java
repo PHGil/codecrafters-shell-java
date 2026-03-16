@@ -1,6 +1,7 @@
 package command;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public final class Utils {
     private static final String PATH = System.getenv("PATH");
@@ -23,5 +24,30 @@ public final class Utils {
     public static boolean isDirectoryPresent(final String path) {
         final File file = new File(path);
         return file.exists() && file.isDirectory();
+    }
+
+    public static ArrayList<String> Arraytokenize(String inputString) {
+        ArrayList<String> currentString = new ArrayList<String>();
+        StringBuilder buffer = new StringBuilder();
+        boolean toggle = false;
+        for (int i = 0; i < inputString.length(); i++) {
+            char c = inputString.charAt(i);
+            if (c == ' ' && !toggle) {
+                if (buffer.length() > 0) {
+                    currentString.add(buffer.toString());
+                    buffer.setLength(0);
+                }
+                continue;
+            } else if (c == '\'') {
+                toggle = !toggle;
+                continue;
+            }
+            buffer.append(c);
+        }
+        if (buffer.length() > 0) {
+            currentString.add(buffer.toString());
+        }
+
+        return currentString;
     }
 }

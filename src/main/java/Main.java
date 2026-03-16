@@ -13,20 +13,20 @@ void main() {
             COMMAND_MAP.put("cd", new CD());
         }
 
-        Commands() {
-        }
-
         public static String run(final String input) {
-            final String[] parts = input.split(" +");
-            final String command = parts[0];
-            final String[] commandArgs = Arrays.copyOfRange(parts, 1, parts.length);
+            final ArrayList<String> tokens = Utils.Arraytokenize(input);
+            if (tokens.isEmpty()) return "";
+
+            final String command = tokens.get(0);
+            final String[] commandArgs = tokens.subList(1, tokens.size()).toArray(new String[0]);
             final Command cmd = COMMAND_MAP.get(command);
+
             if (cmd != null) {
                 return cmd.execute(commandArgs);
             } else if (Utils.checkIfCommandIsExecutable(command) != null) {
                 try {
-                    final Process process = Runtime.getRuntime().exec(parts);
-                    process.waitFor();
+                    final Process process = Runtime.getRuntime().exec(tokens.toArray(new String[0]));
+                    process.waitFor(15, TimeUnit.SECONDS);
                     return new String(process.getInputStream().readAllBytes()).stripTrailing();
                 } catch (IOException | InterruptedException e) {
                     return "Error executing command: " + e.getMessage();
