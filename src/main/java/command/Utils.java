@@ -2,6 +2,7 @@ package command;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public final class Utils {
     private static final String PATH = System.getenv("PATH");
@@ -26,14 +27,14 @@ public final class Utils {
         return file.exists() && file.isDirectory();
     }
 
-    public static ArrayList<String> Arraytokenize(String inputString) {
-        ArrayList<String> currentString = new ArrayList<String>();
+    public static List<String> tokenize(String inputString) {
+        List<String> currentString = new ArrayList<>();
         StringBuilder buffer = new StringBuilder();
         boolean toggle = false;
         for (int i = 0; i < inputString.length(); i++) {
             char c = inputString.charAt(i);
             if (c == ' ' && !toggle) {
-                if (buffer.length() > 0) {
+                if (!buffer.isEmpty()) {
                     currentString.add(buffer.toString());
                     buffer.setLength(0);
                 }
@@ -44,10 +45,9 @@ public final class Utils {
             }
             buffer.append(c);
         }
-        if (buffer.length() > 0) {
+        if (!buffer.isEmpty()) {
             currentString.add(buffer.toString());
         }
-
         return currentString;
     }
 }

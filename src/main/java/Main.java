@@ -14,7 +14,7 @@ void main() {
         }
 
         public static String run(final String input) {
-            final ArrayList<String> tokens = Utils.Arraytokenize(input);
+            final List<String> tokens = Utils.tokenize(input);
             if (tokens.isEmpty()) return "";
 
             final String command = tokens.get(0);
