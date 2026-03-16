@@ -4,7 +4,7 @@ import java.nio.file.Paths;
 
 public class CD implements Command {
     private static final String USER_DIR = "user.dir";
-    private static final String HOME_DIR = System.getProperty("user.home");
+    private static final String HOME_DIR = System.getenv("HOME");
 
     @Override
     public String execute(String[] args) {
